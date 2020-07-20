@@ -536,10 +536,16 @@ while True:
                                     usuario['products'][i]['price_product_max'], usuario['shops']['Ebay'],
                                     usuario['shops']['Gearbest'], usuario['shops']['Banggood'], usuario)
 
-                            if usuario['language'] == "es":
-                                bot.send_message("*Elija una opcion*:", usuario['id'], inline_keyboard(menu_tracking))
+                            if len(usuario['products']) > 0:
+                                if usuario['language'] == "es":
+                                    bot.send_message("*Elija una opcion*:", usuario['id'], inline_keyboard(menu_tracking))
+                                else:
+                                    bot.send_message("*Select an option*:", usuario['id'], inline_keyboard(menu_tracking))
                             else:
-                                bot.send_message("*Select an option*:", usuario['id'], inline_keyboard(menu_tracking))
+                                if usuario['language'] == "es":
+                                    bot.send_message("No tiene productos en seguimiento", usuario['id'])
+                                else:
+                                    bot.send_message("You have no products on tracking", usuario['id'])
 
                         except:
                             if usuario['language'] == "es":
